@@ -1,7 +1,5 @@
 node {
     
-    agent { docker { image 'maven:3.8.5-openjdk-11' } }
-
      stage('Preparation') { 
          git branch: 'master', 
          url: 'https://github.com/ivancarlosantos/generate-token.git' }
