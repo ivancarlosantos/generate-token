@@ -1,40 +1,25 @@
-pipeline {
-    agent any
-    tools {
-        maven 'maven-3.8.5'
-        jdk 'jdk11'
+node {
+    def mvnHome
+    stage('Preparation') { // for display purposes
+        // Get some code from a GitHub repository
+        git 'https://github.com/ivancarlosantos/generate-token.git'
+        // Get the Maven tool.
+        // ** NOTE: This 'M3' Maven tool must be configured
+        // **       in the global configuration.
+        mvnHome = tool 'M3'
     }
-    stages {
-        stage ('Initialize') {
-            steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
+    stage('Build') {
+        // Run the maven build
+        withEnv(["MVN_HOME=$mvnHome"]) {
+            if (isUnix()) {
+                sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+            } else {
+                bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
             }
         }
- 
-        stage('checkout'){
-            git branch: 'master', 
-            url: 'https://github.com/ivancarlosantos/generate-token.git'
-        }
-
-        stage ('compile stage') {
-            steps {
-                withMaven(maven: 'maven_3_8_5'){
-                echo 'compile stage...'
-                sh 'mvn clean compile' 
-              }
-            }
-        }
- 
-        stage ('test and deploy') {
-            steps {
-                withMaven(maven: 'maven_3_8_5'){
-                echo 'deploy stage...'
-                sh 'mvn deploy' 
-              }
-            }
-        }
+    }
+    stage('Results') {
+        junit '**/target/surefire-reports/TEST-*.xml'
+        archiveArtifacts 'target/*.jar'
     }
 }
