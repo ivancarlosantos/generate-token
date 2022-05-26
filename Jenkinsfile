@@ -1,19 +1,40 @@
-node{
+pipeline {
+    agent any
+    tools {
+        maven 'maven-3.8.5'
+        jdk 'jdk11'
+    }
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+ 
         stage('checkout'){
-            git branch: 'master', url: 'https://github.com/ivancarlosantos/generate-token.git'
+            git branch: 'master', 
+            url: 'https://github.com/ivancarlosantos/generate-token.git'
         }
 
-        stage('build'){
-            echo 'Replacing main artifact with repackaged archive - building application...'
-            sh 'mvn package'
+        stage ('compile stage') {
+            steps {
+                withMaven(maven: 'maven_3_8_5'){
+                echo 'compile stage...'
+                sh 'mvn clean compile' 
+              }
+            }
         }
-
-        stage('test'){
-            echo 'unit test...'
-            sh 'mvn -f /app/pom.xml clean package -Dmaven.test.skip'
+ 
+        stage ('test and deploy') {
+            steps {
+                withMaven(maven: 'maven_3_8_5'){
+                echo 'deploy stage...'
+                sh 'mvn deploy' 
+              }
+            }
         }
-        
-        stage('deploy'){
-            echo 'Aplication Deploy on Heroku'
-        }
+    }
 }
