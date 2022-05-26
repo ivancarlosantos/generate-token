@@ -1,15 +1,15 @@
 node {
-    
+
      stage('Preparation') { 
          git branch: 'master', 
          url: 'https://github.com/ivancarlosantos/generate-token.git' }
 
      stage('Verify Directory') { sh 'ls' }
 
-     stage('build') { sh 'apt-get update -y' }
+     stage('build') { sh 'java -version' }
 
-     stage('test') { sh 'ls -a' }
+     stage('test') { sh './mvn -v' }
 
-     stage('deploy') { sh 'ls -lha' }
+     stage('deploy') { echo 'sh mvn clean install' }
 
 }
