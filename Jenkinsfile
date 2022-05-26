@@ -4,15 +4,16 @@ node{
         }
 
         stage('build'){
-            sh 'mvn clean install'
+            echo 'Replacing main artifact with repackaged archive - building application...'
+            sh 'mvn package'
         }
 
         stage('test'){
+            echo 'unit test...'
             sh 'mvn -f /app/pom.xml clean package -Dmaven.test.skip'
         }
         
         stage('deploy'){
-            sh 'echo "init deploy on heroku"',
-            sh ''
+            echo 'Aplication Deploy on Heroku'
         }
 }
