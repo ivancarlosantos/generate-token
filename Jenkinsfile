@@ -8,6 +8,8 @@ node {
 
      stage('Java version') { sh 'java -version' }
 
+     stage('Javac version') { sh 'javac -version' }
+
      stage('Finalize') { sh 'echo "Build end"' }
 
 }
