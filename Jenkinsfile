@@ -8,8 +8,6 @@ node {
 
      stage('Git Version') { sh 'git --version' }
 
-     stage('Docker') { sh 'docker-compose ls' }
-
      stage('Java version') { sh 'java -version' }
 
      stage('Javac version') { sh 'javac -version' }
