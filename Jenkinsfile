@@ -1,14 +1,17 @@
-pipeline {
+node {
     
     agent { docker { image 'maven:3.8.5-openjdk-11' } }
-    
-    stages {
 
-     stage('Preparation') { git 'https://github.com/ivancarlosantos/generate-token.git' }
+     stage('Preparation') { 
+         git branch: 'master', 
+         url: 'https://github.com/ivancarlosantos/generate-token.git' }
 
-     stage('Verify Directory') { steps { sh 'ls'} }
+     stage('Verify Directory') { sh 'ls' }
 
-     stage('build') { steps { sh 'mvn --version'} }
-     
-    }
+     stage('build') { sh 'apt-get update -y' }
+
+     stage('test') { sh 'ls -a' }
+
+     stage('deploy') { sh 'ls -lha' }
+
 }
