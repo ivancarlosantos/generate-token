@@ -8,6 +8,6 @@ node {
 
      stage('Java version') { sh 'java -version' }
 
-     stage('compile') { sh 'java -jar token.jar' }
+     stage('Finalize') { sh 'echo "Build end"' }
 
 }
