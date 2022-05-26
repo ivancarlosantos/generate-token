@@ -6,4 +6,6 @@
 . Exemplo de chamada do endpoint:
 
 
-- http://localhost:8080/generate/token
+- [local] http://localhost:8080/generate/token
+
+- [remoto] https://generate-token-api.herokuapp.com/generate/token
