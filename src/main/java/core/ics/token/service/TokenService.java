@@ -31,7 +31,7 @@ public class TokenService {
 
 		key = t + o + k + e + n;
 		token.setToken(key);
-		TokenModel model = new TokenModel(token.getToken(), new Date().toString(), InetAddress.getLoopbackAddress());
+		TokenModel model = new TokenModel(token.getToken(), new Date().toString(), InetAddress.getLocalHost());
 		Thread.sleep(3000);
 		return model;
 	}
