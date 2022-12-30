@@ -1,5 +1,6 @@
 package core.ics.token.model;
 
+import java.net.InetAddress;
 import java.time.OffsetDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,4 +16,6 @@ public class TokenModel {
 	private String token;
 	
 	private OffsetDateTime createdToken;
+
+	private InetAddress networkAddress;
 }

@@ -1,5 +1,7 @@
 package core.ics.token.service;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -16,7 +18,7 @@ public class TokenService {
 	private String e;
 	private String n;
 
-	public TokenModel generateToken(TokenModel token) throws InterruptedException {
+	public TokenModel generateToken(TokenModel token) throws InterruptedException, UnknownHostException {
 
 		String key;
 
@@ -28,7 +30,7 @@ public class TokenService {
 
 		key = t + o + k + e + n;
 		token.setToken(key);
-		TokenModel model = new TokenModel(token.getToken(), OffsetDateTime.now());
+		TokenModel model = new TokenModel(token.getToken(), OffsetDateTime.now(), InetAddress.getLocalHost());
 		Thread.sleep(3000);
 		return model;
 	}
