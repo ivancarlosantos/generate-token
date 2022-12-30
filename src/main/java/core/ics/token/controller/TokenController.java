@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import core.ics.token.model.TokenModel;
 import core.ics.token.service.TokenService;
 
+import java.net.UnknownHostException;
+
 @RestController
 @RequestMapping(path = "/generate")
 public class TokenController {
@@ -18,7 +20,7 @@ public class TokenController {
 	private TokenService tokenService;
 
 	@GetMapping(path = "/token")
-	public ResponseEntity<TokenModel> generateToken(TokenModel tokenModel) throws InterruptedException{
+	public ResponseEntity<TokenModel> generateToken(TokenModel tokenModel) throws InterruptedException, UnknownHostException {
 		
 		TokenModel token = tokenService.generateToken(tokenModel);
 
