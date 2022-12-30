@@ -15,7 +15,7 @@ public class TokenModel {
 	
 	private String token;
 	
-	private OffsetDateTime createdToken;
+	private String createDateToken;
 
 	private InetAddress networkAddress;
 }

@@ -3,6 +3,7 @@ package core.ics.token.service;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.OffsetDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class TokenService {
 
 		key = t + o + k + e + n;
 		token.setToken(key);
-		TokenModel model = new TokenModel(token.getToken(), OffsetDateTime.now(), InetAddress.getLocalHost());
+		TokenModel model = new TokenModel(token.getToken(), new Date().toString(), InetAddress.getLoopbackAddress());
 		Thread.sleep(3000);
 		return model;
 	}
