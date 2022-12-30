@@ -8,4 +8,4 @@
 
 - [local] http://localhost:9090/generate/token
 
-- [remoto] https://generate-token-api.herokuapp.com/generate/token
+- [remoto] [DEPRECATED] https://generate-token-api.herokuapp.com/generate/token
