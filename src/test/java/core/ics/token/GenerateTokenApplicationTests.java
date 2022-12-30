@@ -8,6 +8,7 @@ class GenerateTokenApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("Test PASSED!!");
 	}
 
 }
