@@ -12,7 +12,7 @@ on:
   push:
     branches: [ "master" ]
   pull_request:
-    branches: [ "feature" ]
+    branches: [ "master", "feature" ]
 
 jobs:
   build:
@@ -32,7 +32,13 @@ jobs:
       run: mvn -B package --file pom.xml
       
     - name: Show Maven Version
-      run: mvn -version 
+      run: mvn -version
+      
+    - name: Show Java Version
+      run: java -version  
+      
+    - name: Show Git Version
+      run: git --version
       
     - name: Build Clean Maven Install
       run: mvn clean install
