@@ -50,7 +50,7 @@ jobs:
       run: mvn test
       
     - name: Build Docker
-      uses: mr-smither-excellent/docker-build-push@v5
+      uses: mr-smithers-excellent/docker-build-push@v5
       with: 
         image: devmenorzera/generate-token
         tags: latest
