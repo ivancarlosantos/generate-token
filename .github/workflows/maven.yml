@@ -31,11 +31,20 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-    - name: Build Clean Maven
+    - name: Show Maven Version
+      run: mvn -version 
+    
+    - name: Show the tree java dependency
+      run: mvn depedency:tree
+      
+    - name: Build Clean Maven Install
       run: mvn clean install
       
-    - name: Build with Maven
-      run: mvn clean verify  
+    - name: Build Clean Maven Verify
+      run: mvn clean verify
+      
+    - name: Execute Maven Test
+      run: mvn test  
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
