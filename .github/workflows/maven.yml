@@ -33,9 +33,6 @@ jobs:
       
     - name: Show Maven Version
       run: mvn -version 
-    
-    - name: Show the tree java dependency
-      run: mvn depedency:tree
       
     - name: Build Clean Maven Install
       run: mvn clean install
